@@ -27,7 +27,7 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7") {
         exclude(group = "org.bukkit", module = "bukkit")
     }
-    compileOnly("su.nightexpress.nightcore:main:2.15.1")
+    compileOnly("su.nightexpress.nightcore:main:2.16.1")
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("org.black_ixx:playerpoints:3.0.0")
 }
@@ -42,28 +42,6 @@ tasks {
         // Replaces ${version} with the project version.
         filesMatching("*plugin.yml") {
             expand(mapOf("version" to project.version))
-        }
-    }
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            artifact(tasks.named("jar"))
-            artifact(tasks.named("sourcesJar")) {
-                classifier = "sources"
-            }
-            artifactId = project.name
-        }
-    }
-    repositories {
-        maven {
-                name = "nightexpress"
-                url = uri("https://repo.nightexpressdev.com/releases")
-                credentials {
-                    username = System.getenv("REPOSILITE_USER")
-                    password = System.getenv("REPOSILITE_PASSWORD")
-                }
         }
     }
 }
